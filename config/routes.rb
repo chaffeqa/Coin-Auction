@@ -1,4 +1,17 @@
 CoinAuction::Application.routes.draw do |map|
+  namespace "admin" do
+    get "home/index"
+    resources :auctions
+    resources :items
+    resources :announcements
+    resources :users
+  end
+
+  
+  resource :account, :controller => "admin/users"
+  match "logout" => 'user_sessions#destroy'
+  resource :user_session
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -49,6 +62,7 @@ CoinAuction::Application.routes.draw do |map|
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
+  root :to => 'admin/home#index'
 
   # See how all your routes lay out with "rake routes"
 

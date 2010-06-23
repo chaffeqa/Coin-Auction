@@ -1,0 +1,16 @@
+<h1>Announcements Admin</h1>
+
+<% @announcements.each do |announcement| %>
+  <%= render 'announcement', :locals => {:announcement => announcement} %>
+  <p>
+    <%= link_to 'Show', admin_announcement_path(announcement) %>---
+    <%= link_to 'Edit', edit_admin_announcement_path(announcement) %>---
+    <%= link_to 'Destroy', admin_announcement_path(announcement), :confirm => 'Are you sure?', :method => :delete %>
+  </p>
+
+<% end %>
+
+<br />
+
+<%= link_to 'New Announcement', new_admin_announcement_path %>
+---<%= link_to 'Admin Home', 'home/index' %>

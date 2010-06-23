@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  age: 2010-06-22
+  series: MyString
+  diameter: MyString
+  designer: MyString
+  weight: MyString
+  edge: MyString
+  metal_content: MyString
+
+two:
+  name: MyString
+  age: 2010-06-22
+  series: MyString
+  diameter: MyString
+  designer: MyString
+  weight: MyString
+  edge: MyString
+  metal_content: MyString

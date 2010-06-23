@@ -1,0 +1,23 @@
+
+<% auction = @auction || locals[:auction] %>
+<% if auction.item %>
+  <h2>Auction Item: </h2>
+  <%= render 'admin/items/item', :locals => {:item => auction.item} %>
+<% else %>
+  <h2>No Item Associated</h2>
+<% end %>
+
+<p>
+  <b>End time:</b>
+  <%= auction.end_time %>
+</p>
+
+<p>
+  <b>Top bidder:</b>
+  <%= auction.top_bidder %>
+</p>
+
+<p>
+  <b>Current bid:</b>
+  <%= auction.current_bid %>
+</p>

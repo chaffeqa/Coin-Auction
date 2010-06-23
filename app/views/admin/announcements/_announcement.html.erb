@@ -1,0 +1,5 @@
+<% announcement =  @announcement || locals[:announcement] %>
+
+<h2><%= announcement.title.capitalize %></h2>
+
+<p><%=raw announcement.body %></p>

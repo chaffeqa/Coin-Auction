@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  end_time: 2010-06-22 22:45:23
+  top_bidder: MyString
+  current_bid: 9.99
+
+two:
+  end_time: 2010-06-22 22:45:23
+  top_bidder: MyString
+  current_bid: 9.99

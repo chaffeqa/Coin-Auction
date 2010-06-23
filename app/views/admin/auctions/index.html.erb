@@ -1,0 +1,30 @@
+<h1>Auctions Admin</h1>
+
+<table>
+  <tr>
+    <th>Auction Item</th>
+    <th>End time</th>
+    <th>Top bidder</th>
+    <th>Current bid</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @auctions.each do |auction| %>
+  <tr>
+    <td><%= auction.item.name if auction.item %></td>
+    <td><%= auction.end_time %></td>
+    <td><%= auction.top_bidder %></td>
+    <td><%= auction.current_bid %></td>
+    <td><%= link_to 'Show', admin_auction_path(auction) %></td>
+    <td><%= link_to 'Edit', edit_admin_auction_path(auction) %></td>
+    <td><%= link_to 'Destroy', admin_auction_path(auction), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Auction', new_admin_auction_path %>
+---<%= link_to 'Admin Home', 'home/index' %>

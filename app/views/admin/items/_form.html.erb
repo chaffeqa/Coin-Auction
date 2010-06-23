@@ -1,0 +1,49 @@
+<%= form_for([:admin, @item]) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.date_select :age %>
+  </div>
+  <div class="field">
+    <%= f.label :series %><br />
+    <%= f.text_field :series %>
+  </div>
+  <div class="field">
+    <%= f.label :diameter %><br />
+    <%= f.text_field :diameter %>
+  </div>
+  <div class="field">
+    <%= f.label :designer %><br />
+    <%= f.text_field :designer %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :edge %><br />
+    <%= f.text_field :edge %>
+  </div>
+  <div class="field">
+    <%= f.label :metal_content %><br />
+    <%= f.text_field :metal_content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
