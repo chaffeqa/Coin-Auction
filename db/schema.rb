@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(:version => 20100623024523) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
+    t.integer  "product_id"
+    t.string   "product_type",  :limit => 30
+    t.string   "active"
     t.date     "age"
     t.string   "series"
     t.string   "diameter"

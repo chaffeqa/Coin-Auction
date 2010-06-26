@@ -20,6 +20,6 @@
     <%= f.cktext_area :body, :swf_params=>{:assetable_type=>'Demo', :assetable_id=>0} %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :disable_with => "Please Wait..." %>
   </div>
 <% end %>

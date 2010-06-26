@@ -1,0 +1,19 @@
+
+<% auction = @auction || locals[:auction] %>
+
+<td>
+  <% if auction.item %>
+    <strong><%= auction.item.name %><%= (" (" + auction.item.age.year.to_s + ")") if auction.item.age %></strong>
+  <% else %>
+    <strong>Item Error!</strong>
+  <% end %>
+</td>
+
+
+<td>
+  <%= time_left(auction.end_time,@time) %>
+</td>
+
+<td>
+  <%= to_currency(auction.current_bid) %>
+</td>

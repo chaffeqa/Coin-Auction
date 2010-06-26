@@ -1,0 +1,3 @@
+class Coin < Item
+  
+end

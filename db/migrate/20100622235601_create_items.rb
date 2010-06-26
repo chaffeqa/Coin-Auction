@@ -2,6 +2,10 @@ class CreateItems < ActiveRecord::Migration
   def self.up
     create_table :items do |t|
       t.string :name
+      t.integer :product_id
+		  t.string  :product_type, :limit => 30
+      t.string :active
+      # If its a coin
       t.date :age
       t.string :series
       t.string :diameter

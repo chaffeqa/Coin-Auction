@@ -1,0 +1,13 @@
+<h3>Popular Auctions</h3>
+<table class="panel">
+  <tr>
+    <th>Item</th>
+    <th>Auction End Time</th>
+    <th>Current Bid</th>
+  </tr>
+  <% @popular_auctions.each do |auction| %>
+  <tr onclick="location.href='<%= auctions_view_url(auction.id) %>';" style="cursor: pointer;" onmouseover="this.className='hover';" onmouseout="this.className='';" >
+    <%= render 'auction/customer_auctions/auction_listing', :locals => {:auction => auction}%>
+  </tr>
+<% end %>
+</table>

@@ -3,9 +3,20 @@ class ApplicationController < ActionController::Base
   layout 'application'
   helper :all
   helper_method :current_user_session, :current_user
+  before_filter :side_panels
   #filter_parameter_logging :password, :password_confirmation DEPRICATED
 
   private
+
+  def side_panels
+    @popular_auctions = Auction.list_by_popularity.limit(5)
+    if current_user
+      @user = current_user
+    else
+      @user_session = UserSession.new
+    end
+  end  
+  
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find
@@ -19,7 +30,7 @@ class ApplicationController < ActionController::Base
   def require_user
     unless current_user
       store_location
-      flash[:notice] = "You must be logged in to access this page"
+      flash[:important_notice] = "You must be logged in to access this page"
       redirect_to new_user_session_url
       return false
     end
@@ -28,7 +39,7 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      flash[:notice] = "You must be logged out to access this page"
+      flash[:important_notice] = "You must be logged out to access this page"
       redirect_to account_url
       return false
     end

@@ -6,4 +6,9 @@ class HomeControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get announcement" do
+    get :announcement
+    assert_response :success
+  end
+
 end

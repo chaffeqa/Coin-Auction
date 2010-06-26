@@ -1,0 +1,21 @@
+<%= form_for(@bid) do |form| %>
+  <% if @bid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+
+      <ul>
+        <% @bid.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :amount, "Bid Sum" %>
+    <%= form.text_field :amount %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Make Bid", :disable_with => "Please Wait..." %>
+  </div>
+<% end %>

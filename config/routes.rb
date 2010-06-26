@@ -1,4 +1,20 @@
 CoinAuction::Application.routes.draw do |map|
+ 
+  scope :module => "auction" do
+    # CustomerAuctions Controller
+    match "auctions/categories" => 'customer_auctions#categories', :as => :auctions_categories
+    match "auctions/list" => 'customer_auctions#list', :as => :auctions_list
+    match "auctions/view/:id" => 'customer_auctions#view', :as => :auctions_view
+    # CustomerBid Controller
+    resource :customer_bid, :only => [:new, :create, :destroy]
+  end
+
+  # Home Controller
+  match "home" => 'home#index', :as => :home
+  match "home/all_announcements" => 'home#all_announcements', :as => :all_announcements
+  match "home/:id" => "home#announcement", :as => :announcement
+  
+  # Admin Namespace
   namespace "admin" do
     get "home/index"
     resources :auctions
@@ -62,7 +78,7 @@ CoinAuction::Application.routes.draw do |map|
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
-  root :to => 'admin/home#index'
+  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 
