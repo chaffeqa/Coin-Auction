@@ -1,5 +1,4 @@
-
-<% auction = @auction || locals[:auction] %>
+<% auction = defined?(locals[:auction]) ? locals[:auction] : @auction %>
 
 <td>
   <% if auction.item %>
@@ -9,11 +8,10 @@
   <% end %>
 </td>
 
-
 <td>
-  <%= time_left(auction.end_time,@time) %>
+  <%= auction.time_left_short %>
 </td>
 
 <td>
-  <%= to_currency(auction.current_bid) %>
+  <%= auction.current_bid_to_currency %>
 </td>

@@ -1,5 +1,17 @@
 CoinAuction::Application.routes.draw do |map|
- 
+  # Home Controller
+  match "home" => 'home#index', :as => :home
+  match "home/all_announcements" => 'home#all_announcements', :as => :all_announcements
+  match "home/:id" => "home#announcement", :as => :announcement
+  
+  # Account Controller
+  get "account/show"
+  get "account/bids"
+  get "account/history"
+  match "logout" => 'user_sessions#destroy'
+  resource :user_session, :only => [:destroy, :create, :new]
+
+  # Auctions Module
   scope :module => "auction" do
     # CustomerAuctions Controller
     match "auctions/categories" => 'customer_auctions#categories', :as => :auctions_categories
@@ -9,24 +21,19 @@ CoinAuction::Application.routes.draw do |map|
     resource :customer_bid, :only => [:new, :create, :destroy]
   end
 
-  # Home Controller
-  match "home" => 'home#index', :as => :home
-  match "home/all_announcements" => 'home#all_announcements', :as => :all_announcements
-  match "home/:id" => "home#announcement", :as => :announcement
   
   # Admin Namespace
   namespace "admin" do
     get "home/index"
-    resources :auctions
+    resources :auctions do
+      delete :destroy_bid, :on => :member
+    end
     resources :items
     resources :announcements
     resources :users
   end
 
   
-  resource :account, :controller => "admin/users"
-  match "logout" => 'user_sessions#destroy'
-  resource :user_session
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

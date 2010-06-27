@@ -1,4 +1,25 @@
-<%= render 'auction' %>
+<%= render 'partials/auction' %>
 
-<%= link_to 'Edit', edit_admin_auction_path(@auction) %> |
+<% if @auction.bids %>
+  <h3>Bids on Auction:</h3>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Bidder Account</th>
+      <th>Time of Bid</th>
+      <th>Bid Amount</th>
+    </tr>
+    <% @bids.each do |bid| %>
+      <tr>
+        <%= render 'partials/bid_list', :locals => {:bid => bid} %>
+        <td><%= link_to "Bidder Info", admin_user_path(bid.user) %></td>
+        <td><%= link_to "Delete", destroy_bid_admin_auction_path(:bid_id => bid.id, :auction_id => @auction.id), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <h3>No Bids on this Auction Currently</h3>
+  <% end %>
+</table>
+
+<%= link_to 'Edit Auction', edit_admin_auction_path(@auction) %> |
 <%= link_to 'Admin Home', admin_auctions_path %>

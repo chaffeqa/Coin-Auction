@@ -1,0 +1,24 @@
+<% auction = defined?(locals[:auction]) ? locals[:auction] : @auction %>
+
+<% if auction.item %>
+  <h3>Auction Item: </h3>
+  <%= render 'partials/item', :locals => {:item => auction.item} %>
+<% else %>
+  <h2>No Item Associated</h2>
+<% end %>
+
+<h3>Auction Details: </h3>
+<p>
+  <strong>Time Left:</strong>
+  <%= auction.time_left_long %>
+</p>
+
+<p>
+  <strong>Top bidder:</strong>
+  <%= auction.top_bidder %>
+</p>
+
+<p>
+  <strong>Current bid:</strong>
+  <%= auction.current_bid_to_currency %>
+</p>

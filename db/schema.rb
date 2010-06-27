@@ -23,7 +23,8 @@ ActiveRecord::Schema.define(:version => 20100623024523) do
     t.integer  "item_id"
     t.datetime "end_time"
     t.string   "top_bidder"
-    t.decimal  "current_bid", :precision => 8, :scale => 2
+    t.decimal  "current_bid",     :precision => 8, :scale => 2
+    t.decimal  "starting_amount", :precision => 8, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

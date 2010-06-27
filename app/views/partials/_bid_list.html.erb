@@ -1,0 +1,21 @@
+<% bid = defined?(locals[:bid]) ? locals[:bid] : @bid %>
+
+<td>
+  <% if bid.auction and bid.auction.item %>
+    <strong><%= bid.auction.item.name %><%= (" (" + bid.auction.item.age.year.to_s + ")") if bid.auction.item.age %></strong>
+  <% else %>
+    <strong>Error!</strong> No Item Associated
+  <% end %>
+</td>
+
+<td>
+  <%=  bid.user ? bid.user.login : "Error! No User Associated" %>
+</td>
+
+<td>
+  <%= bid.created_at %>
+</td>
+
+<td>
+  <%= bid.amount_to_currency %>
+</td>

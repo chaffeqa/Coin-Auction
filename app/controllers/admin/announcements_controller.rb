@@ -1,6 +1,6 @@
 class Admin::AnnouncementsController < ApplicationController
  # before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:new, :create, :edit, :destroy]
+  before_filter :require_user
 
   # GET /announcements
   # GET /announcements.xml

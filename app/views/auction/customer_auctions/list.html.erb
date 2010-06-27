@@ -7,7 +7,7 @@
   </tr>
   <% @auctions.each do |auction| %>
   <tr onclick="location.href='<%= auctions_view_url(auction.id) %>';" style="cursor: pointer;" onmouseover="this.className='hover';" onmouseout="this.className='';" >
-    <%= render 'auction_listing', :locals => {:auction => auction}%>
+    <%= render 'partials/auction_listing', :locals => {:auction => auction}%>
   </tr>
 <% end %>
 </table>

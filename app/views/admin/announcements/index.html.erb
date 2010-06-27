@@ -1,7 +1,7 @@
 <h1>Announcements Admin</h1>
 
 <% @announcements.each do |announcement| %>
-  <%= render 'announcement', :locals => {:announcement => announcement} %>
+  <%= render 'partials/announcement_list', :locals => {:announcement => announcement} %>
   <p>
     <%= link_to 'Show', admin_announcement_path(announcement) %>---
     <%= link_to 'Edit', edit_admin_announcement_path(announcement) %>---

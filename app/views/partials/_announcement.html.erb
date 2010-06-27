@@ -1,0 +1,5 @@
+<% announcement = defined?(locals[:announcement]) ? locals[:announcement] : @announcement %>
+
+<h3><%= announcement.title %></h3>
+
+<p><%=raw announcement.body %></p>

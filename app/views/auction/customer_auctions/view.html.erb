@@ -1,4 +1,6 @@
 
-<%= render 'auction' %>
+<%= render 'partials/auction' %>
+
+<%= link_to 'Place Bid', new_customer_bid_path(:auction_id => @auction.id), :method => :get %>
 
 <%= link_to 'Auctions List', auctions_list_path %>

@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
   private
 
   def side_panels
-    @popular_auctions = Auction.list_by_popularity.limit(5)
+    @popular_auctions = Auction.all #list_by_popularity.limit(5)
+    @time = Time.now
     if current_user
       @user = current_user
     else

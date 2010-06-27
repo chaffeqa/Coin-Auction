@@ -1,0 +1,25 @@
+<% bid = defined?(locals[:bid]) ? locals[:bid] : @bid %>  
+
+<h3>Bid For:</h3>
+<% if bid.auction and bid.auction.item %>
+  <p><%= render 'item', :locals => {:item => bid.auction.item} %></p>
+  <p><strong>Time Left:</strong> <%= time_left(bid.auction.end_time) %></p>
+<% else %>
+  <p><strong>Error!</strong> No Item Associated</p>
+<% end %>
+
+
+<p>
+  <strong>Bidder: </strong>
+  <%= bid.user.login if bid.user || "Error! No User Associated" %>
+</p>
+
+<p>
+  <strong>Time of Bid: </strong>
+  <%= bid.created_at %>
+</p>
+
+<p>
+  <strong>Bid Amount: </strong>
+  <%= bid.amount_to_currency %>
+</p>

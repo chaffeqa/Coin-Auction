@@ -1,21 +1,21 @@
 class Auction::CustomerBidsController < ApplicationController
   before_filter :require_user
-  before_filter :get_user, :only => [:new]
-  before_filter :current_time
+  before_filter :get_user_and_auction, :only => [:new]
 
   def new
-    @bid = @user.build_bid
+    @bid = @user.bids.build
     @bid.auction = @auction
-    @bid.amount = @auction.current_bid
+    @bid.amount = @auction.current_bid    
   end
 
   def create
     @bid = Bid.new(params[:bid])
     if @bid.save
-      redirect_to auctions_view(@bid.auction_id)
+      redirect_to auctions_view_url(@bid.auction_id)
     else
       @auction = Auction.find(@bid.auction_id)
       @user = current_user
+      @item = @auction.item
       render :action => :new
     end
   end
@@ -31,7 +31,8 @@ class Auction::CustomerBidsController < ApplicationController
 
   def get_user_and_auction
     @user = current_user
-    @auction = params[:auction_id]
+    @auction = Auction.find(params[:auction_id])
+    @item = @auction.item
   end
 
 end

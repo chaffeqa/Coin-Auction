@@ -5,6 +5,7 @@ class CreateAuctions < ActiveRecord::Migration
       t.datetime :end_time
       t.string :top_bidder
       t.decimal :current_bid, :precision => 8, :scale => 2
+      t.decimal :starting_amount, :precision => 8, :scale => 2
 
       t.timestamps
     end

@@ -1,4 +1,6 @@
 class Admin::AuctionsController < ApplicationController
+  before_filter :require_user
+  
   # GET /auctions
   # GET /auctions.xml
   def index
@@ -14,6 +16,8 @@ class Admin::AuctionsController < ApplicationController
   # GET /auctions/1.xml
   def show
     @auction = Auction.find(params[:id])
+    @item = @auction.item
+    @bids = @auction.bids.order("created_at desc")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +29,7 @@ class Admin::AuctionsController < ApplicationController
   # GET /auctions/new.xml
   def new
     @auction = Auction.new
+    @auction.item_id = params[:item_id] if params[:item_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -77,6 +82,17 @@ class Admin::AuctionsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(admin_auctions_url) }
+      format.xml  { head :ok }
+    end
+  end
+
+  # DELETE /admin/auctions/destroy_bid/1
+  def destroy_bid
+    @bid = Bid.find(params[:bid_id])
+    @bid.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(:back || admin_auction_url(params[:auction_id])) }
       format.xml  { head :ok }
     end
   end

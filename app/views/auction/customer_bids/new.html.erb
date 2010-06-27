@@ -1,4 +1,11 @@
-<%= form_for(@bid) do |form| %>
+
+<h2>Bid For:</h2>
+<div class="coin"><%= render 'partials/item' %></div>
+
+
+<p><strong>Time Left:</strong> <%= @auction.time_left_long %></p>
+
+<%= form_for(@bid, :url => customer_bid_path) do |form| %>
   <% if @bid.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
@@ -12,9 +19,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :amount, "Bid Sum" %>
-    <%= form.text_field :amount %>
+    <%= form.label :amount, "Bid Amount" %>
+    $ <%= f.text_field :amount, :size => 6 %><br/>
+    <strong>Current Bid: </strong>$<%= @auction.current_bid_to_currency %>
   </div>
+
+  <%= form.hidden_field :auction_id %>
+  <%= form.hidden_field :user_id %>
+
   <div class="actions">
     <%= form.submit "Make Bid", :disable_with => "Please Wait..." %>
   </div>

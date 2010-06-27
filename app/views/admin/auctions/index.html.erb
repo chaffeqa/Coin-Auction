@@ -6,17 +6,11 @@
     <th>End time</th>
     <th>Top bidder</th>
     <th>Current bid</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @auctions.each do |auction| %>
   <tr>
-    <td><%= auction.item.name if auction.item %></td>
-    <td><%= auction.end_time %></td>
-    <td><%= auction.top_bidder %></td>
-    <td><%= auction.current_bid %></td>
+    <%= render 'partials/auction_list', :locals => {:auction => auction} %>
     <td><%= link_to 'Show', admin_auction_path(auction) %></td>
     <td><%= link_to 'Edit', edit_admin_auction_path(auction) %></td>
     <td><%= link_to 'Destroy', admin_auction_path(auction), :confirm => 'Are you sure?', :method => :delete %></td>

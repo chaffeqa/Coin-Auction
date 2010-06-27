@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+  before_filter :require_user
+  
   # GET /items
   # GET /items.xml
   def index
